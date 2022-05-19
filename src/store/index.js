@@ -4,11 +4,15 @@ import Vuex from 'vuex'
 Vue.use(Vuex)
 
 export default new Vuex.Store({
-  state: {
+    state: {
+        ifBar:true,
   },
   getters: {
   },
-  mutations: {
+    mutations: {
+        ChangeBar(state,value) {
+            state.ifBar = value;
+        }
   },
   actions: {
   },
