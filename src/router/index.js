@@ -4,6 +4,7 @@ import Login from '../views/Login.vue'
 import Rigister from '../views/Register.vue'
 import store from '../store'
 import HomePage from '../views/HomePage.vue'
+import SearchPage from '../views/SearchPage'
 Vue.use(VueRouter)
 
 const routes = [
@@ -11,6 +12,12 @@ const routes = [
         path: '/',
         name: 'homePage',
         component: HomePage,
+    },
+
+    {
+        path: '/search',
+        name: 'searchPage',
+        component: SearchPage,
     },
 
     {
@@ -24,7 +31,8 @@ const routes = [
         name: 'rigister',
         component: Rigister,
         meta:{noBar: true}
-  }
+    },
+
 ]
 
 const router = new VueRouter({

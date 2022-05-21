@@ -9,10 +9,15 @@
 </template>
 
 <script>
-import GoodsLayer from "@/components/GoodsLayer.vue";
 import ScreenOuter from "../components/ScreenOuter";
-import FooterBlock from '@/components/FooterBlock.vue';
+import GoodsLayer from "@/components/GoodsLayer";
+import FooterBlock from "@/components/FooterBlock";
 export default {
+  data() {
+    return {
+      circleUrl: "",
+    };
+  },
   components: {
     ScreenOuter,
     GoodsLayer,
@@ -25,7 +30,7 @@ export default {
 * {
   font-family: "Helvetica Neue", Helvetica, "PingFang SC", "Hiragino Sans GB",
     "Microsoft YaHei", "微软雅黑", Arial, sans-serif;
-    background-color: #E8E2E0;
+  background-color: #e8e2e0;
 }
 
 #navBar {
@@ -38,13 +43,13 @@ export default {
   height: 65px;
   width: 1300px;
   margin: 0 auto;
-//   border-radius: 18px 18px 0 0;
+  //   border-radius: 18px 18px 0 0;
   position: relative;
-    color: rgb(255, 255, 255);
-    font-size: 45px;
+  color: rgb(255, 255, 255);
+  font-size: 45px;
   background-color: rgb(169, 125, 125);
   span {
-      background-color: inherit;
+    background-color: inherit;
   }
 }
 </style>

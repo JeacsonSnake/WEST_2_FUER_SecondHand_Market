@@ -7,7 +7,7 @@
 
 <script>
 import { mapState } from "vuex";
-import HeadNavBar from './components/HeadNavBar.vue';
+import HeadNavBar from './components/HeadNavBar';
 
 
 export default {

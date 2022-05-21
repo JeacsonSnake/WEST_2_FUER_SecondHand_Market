@@ -464,6 +464,7 @@ export default {
     return {
       currentDate: new Date(),
       goodDis: "好吃的汉堡AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+      circleUrl: "",
     };
   },
 };
