@@ -5,7 +5,8 @@ Vue.use(Vuex)
 
 export default new Vuex.Store({
     state: {
-        ifBar:true,
+        ifBar: true,
+        isAuth: false,
   },
   getters: {
   },

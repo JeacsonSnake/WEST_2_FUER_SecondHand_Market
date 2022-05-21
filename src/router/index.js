@@ -3,9 +3,15 @@ import VueRouter from 'vue-router'
 import Login from '../views/Login.vue'
 import Rigister from '../views/Register.vue'
 import store from '../store'
+import HomePage from '../views/HomePage.vue'
 Vue.use(VueRouter)
 
 const routes = [
+    {
+        path: '/',
+        name: 'homePage',
+        component: HomePage,
+    },
 
     {
         path: '/login',
