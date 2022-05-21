@@ -5,6 +5,7 @@ import Rigister from '../views/Register.vue'
 import store from '../store'
 import HomePage from '../views/HomePage.vue'
 import SearchPage from '../views/SearchPage'
+import UserPage from '../views/UserPage.vue'
 Vue.use(VueRouter)
 
 const routes = [
@@ -21,11 +22,18 @@ const routes = [
     },
 
     {
+        path: '/user',
+        name: 'userPage',
+        component: UserPage,
+    },
+
+    {
         path: '/login',
         name: 'login',
         component: Login,
         meta:{noBar: true}
     },
+    
     {
         path: '/rigister',
         name: 'rigister',
