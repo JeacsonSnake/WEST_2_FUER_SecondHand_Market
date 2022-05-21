@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="navSearchBar">
     <el-row style="width: 700px">
       <el-col>
         <el-input
@@ -134,6 +134,16 @@ export default {
 </script>
 
 <style>
+.headNavbar {
+  height: 55px;
+  width: 100%;
+  background-color: rgba(215, 201, 201, 0.434);
+  display: flex;
+  align-items: center;
+  position: fixed;
+  z-index: 20;
+}
+
 .left {
   margin-left: 200px;
 }

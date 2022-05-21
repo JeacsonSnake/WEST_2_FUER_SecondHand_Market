@@ -38,7 +38,7 @@ export default {};
 
 .TitleName {
   font-size: 40px;
-  color: #fff;
+  color: rgb(179, 156, 156);
 }
 
 .carousel {

@@ -8,11 +8,23 @@
           ><span>/</span><a href="">2</a><span>/</span><a href="">3</a>
         </li>
         <li>
-          <i></i><a href="">1</a><span>/</span><a href="">2</a><span>/</span
+          <i class="el-icon-basketball"></i><a href="">1</a><span>/</span><a href="">2</a><span>/</span
           ><a href="">3</a>
         </li>
         <li>
-          <i></i><a href="">1</a><span>/</span><a href="">2</a><span>/</span
+          <i class="el-icon-umbrella"></i><a href="">1</a><span>/</span><a href="">2</a><span>/</span
+          ><a href="">3</a>
+        </li>
+        <li>
+          <i class="el-icon-bicycle"></i><a href="">1</a><span>/</span><a href="">2</a><span>/</span
+          ><a href="">3</a>
+        </li>
+        <li>
+          <i class="el-icon-umbrella"></i><a href="">1</a><span>/</span><a href="">2</a><span>/</span
+          ><a href="">3</a>
+        </li>
+        <li>
+          <i class="el-icon-umbrella"></i><a href="">1</a><span>/</span><a href="">2</a><span>/</span
           ><a href="">3</a>
         </li>
       </ul>
@@ -28,7 +40,7 @@ export default {};
 .classification {
   width: 300px;
   height: 100%;
-  background-color: rgb(106, 27, 27);
+  background-color: rgb(233, 179, 179);
   color: rgb(255, 255, 255);
   display: flex;
   flex-direction: column;
@@ -47,7 +59,7 @@ export default {};
       margin-bottom: 14px;
       width: 212px;
       color: #666;
-      svg {
+      svg,i {
         margin-right: 12px;
         font-size: 16px;
         width: 16px;

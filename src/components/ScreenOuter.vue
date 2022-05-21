@@ -20,7 +20,7 @@ export default {
   border-radius: 18px 18px 0 0;
   position: relative;
   display: flex;
-  background-color: rgb(97, 20, 20);
+  background-color: rgb(255, 255, 255);
 }
 
 
