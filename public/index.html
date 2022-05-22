@@ -1,23 +1,48 @@
 <!DOCTYPE html>
 <html lang="">
   <head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width,initial-scale=1.0">
-    <link rel="icon" href="<%= BASE_URL %>favicon.ico">
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width,initial-scale=1.0" />
+    <link rel="icon" href="<%= BASE_URL %>favicon.ico" />
     <title><%= htmlWebpackPlugin.options.title %></title>
   </head>
   <body>
     <noscript>
-      <strong>We're sorry but <%= htmlWebpackPlugin.options.title %> doesn't work properly without JavaScript enabled. Please enable it to continue.</strong>
+      <strong
+        >We're sorry but <%= htmlWebpackPlugin.options.title %> doesn't work
+        properly without JavaScript enabled. Please enable it to
+        continue.</strong
+      >
     </noscript>
     <div id="app"></div>
     <!-- built files will be auto injected -->
   </body>
   <style>
-      * {
-          margin: 0;
-          padding: 0;
-      }
+    * {
+      margin: 0;
+      padding: 0;
+    }
+
+    /*滚动条整体样式*/
+    *::-webkit-scrollbar {
+      width: 5px;
+      /*高宽分别对应横竖滚动条的尺寸*/
+      height: 1px;
+    }
+
+    *::-webkit-scrollbar-thumb {
+      /*滚动条里面小方块*/
+      border-radius: 5px;
+      -webkit-box-shadow: inset 0 0 2px rgba(0, 0, 0, 0.1);
+      background: #515a6e;
+    }
+
+    *::-webkit-scrollbar-track {
+      /*滚动条里面轨道*/
+      -webkit-box-shadow: inset 0 0 2px rgba(0, 0, 0, 0.1);
+      border-radius: 10px;
+      background: #dcdee2;
+    }
   </style>
 </html>

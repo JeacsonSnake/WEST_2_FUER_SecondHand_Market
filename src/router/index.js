@@ -6,25 +6,54 @@ import store from '../store'
 import HomePage from '../views/HomePage.vue'
 import SearchPage from '../views/SearchPage'
 import UserPage from '../views/UserPage.vue'
+import FootPrintPage from '../views/FootPrintPage.vue'
+import CollectionPage from '../views/CollectionPage.vue'
+import BuyInPage from '../views/BuyInPage';
+import SoldAwayPage from '../views/SoldAwayPage';
 Vue.use(VueRouter)
 
 const routes = [
     {
-        path: '/',
         name: 'homePage',
+        path: '/',
         component: HomePage,
+        
     },
 
     {
-        path: '/search',
         name: 'searchPage',
+        path: '/search',
         component: SearchPage,
+        meta:{needAuth: true},
     },
 
     {
-        path: '/user',
         name: 'userPage',
+        path: '/user',
         component: UserPage,
+        meta:{needAuth: true},
+        children: [
+            {
+                name: 'footPrintPage',
+                path: 'footPrint',
+                component: FootPrintPage,
+            },
+            {
+                name: 'CollectionPage',
+                path: 'collection',
+                component: CollectionPage,
+            },
+            {
+                name: 'BuyInPage',
+                path: 'buyIn',
+                component: BuyInPage,
+            },
+            {
+                name: 'SoldAwayPage',
+                path: 'soldAway',
+                component: SoldAwayPage,
+            },
+        ]
     },
 
     {
@@ -43,6 +72,12 @@ const routes = [
 
 ]
 
+// 解决ElementUI导航栏中的vue-router在3.0版本以上重复点菜单报错问题
+const originalPush = VueRouter.prototype.push
+VueRouter.prototype.push = function push(location) {
+  return originalPush.call(this, location).catch(err => err)
+}
+
 const router = new VueRouter({
   routes
 })
@@ -50,11 +85,25 @@ const router = new VueRouter({
 router.beforeEach((to, from, next) => {
     if (to.meta.noBar) {
         store.state.ifBar = false;
-        next();
         
     } else {
         store.state.ifBar = true;
-        next();
+    }
+
+    if (!to.meta.needAuth) {
+        next();       
+    } else {
+        if (store.state.isAuth) {
+            next();
+        } else {
+            alert("需要登录才可以进行后续操作!!");
+            next({
+                path: '/login',
+                query: {
+                    redirect: to.fullPath
+                }
+            })
+        }
     }
 })
 

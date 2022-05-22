@@ -2,7 +2,8 @@
   <div class="userPage">
     <div id="navBar"></div>
     <div class="userLayer">
-        <UserDisplay></UserDisplay>
+      <UserDisplay></UserDisplay>
+      <router-view></router-view>
     </div>
     <FooterBlock></FooterBlock>
   </div>
@@ -10,12 +11,19 @@
 
 <script>
 import FooterBlock from "@/components/FooterBlock";
-import UserDisplay from '@/components/UserDisplay.vue';
+import UserDisplay from "@/components/UserDisplay.vue";
 export default {
   components: {
     FooterBlock,
     UserDisplay,
   },
+
+  methods: {
+      ddd() {
+          console.log(this.$route.path);
+      }
+  },
+
 };
 </script>
 
@@ -26,7 +34,7 @@ export default {
   background-color: rgb(227, 198, 198);
 }
 .userLayer {
-  height: 1000px;
+  height: 1500px;
   width: 1300px;
   margin: 20px auto;
   border-radius: 12px;

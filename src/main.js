@@ -2,10 +2,35 @@ import Vue from 'vue'
 import App from './App.vue'
 import router from './router'
 import store from './store'
-
-import { Form,FormItem,Button,Input,Checkbox,Row,Col,Card,Tag,Avatar,Image,Carousel,CarouselItem } from 'element-ui';
+import 'default-passive-events'
+import {
+    Form,
+    FormItem,
+    Button,
+    Input,
+    Checkbox,
+    Row,
+    Col,
+    Card,
+    Tag,
+    Avatar,
+    Image,
+    Carousel,
+    CarouselItem,
+    Empty,
+    Table,
+    TableColumn,
+    Dialog,
+    Message,
+    MessageBox,
+    Select,
+    Option,
+} from 'element-ui';
 
 Vue.config.productionTip = false;
+
+Vue.prototype.$confirm = MessageBox.confirm;
+Vue.prototype.$message = Message;
 
 Vue.component(Form.name,Form);
 Vue.component(FormItem.name, FormItem);
@@ -20,6 +45,12 @@ Vue.component(Avatar.name, Avatar);
 Vue.component(Image.name, Image);
 Vue.component(Carousel.name, Carousel);
 Vue.component(CarouselItem.name, CarouselItem);
+Vue.component(Empty.name, Empty);
+Vue.component(Table.name, Table);
+Vue.component(TableColumn.name, TableColumn);
+Vue.component(Dialog.name, Dialog);
+Vue.component(Select.name, Select);
+Vue.component(Option.name, Option);
 
 /* import the fontawesome core */
 import { library } from '@fortawesome/fontawesome-svg-core'
