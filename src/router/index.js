@@ -10,6 +10,7 @@ import FootPrintPage from '../views/FootPrintPage.vue'
 import CollectionPage from '../views/CollectionPage.vue'
 import BuyInPage from '../views/BuyInPage';
 import SoldAwayPage from '../views/SoldAwayPage';
+import GoodsDisplayPage from '../views/GoodsDisplayPage.vue';
 Vue.use(VueRouter)
 
 const routes = [
@@ -24,6 +25,13 @@ const routes = [
         name: 'searchPage',
         path: '/search',
         component: SearchPage,
+        meta:{needAuth: true},
+    },
+
+    {
+        name: 'goodsDisplayPage',
+        path: '/goods',
+        component: GoodsDisplayPage,
         meta:{needAuth: true},
     },
 
@@ -89,22 +97,22 @@ router.beforeEach((to, from, next) => {
     } else {
         store.state.ifBar = true;
     }
-
-    if (!to.meta.needAuth) {
-        next();       
-    } else {
-        if (store.state.isAuth) {
-            next();
-        } else {
-            alert("需要登录才可以进行后续操作!!");
-            next({
-                path: '/login',
-                query: {
-                    redirect: to.fullPath
-                }
-            })
-        }
-    }
+        next();
+    // if (!to.meta.needAuth) {
+    //     next();       
+    // } else {
+    //     if (store.state.isAuth) {
+    //         next();
+    //     } else {
+    //         alert("需要登录才可以进行后续操作!!");
+    //         next({
+    //             path: '/login',
+    //             query: {
+    //                 redirect: to.fullPath
+    //             }
+    //         })
+    //     }
+    // }
 })
 
 export default router
