@@ -11,6 +11,7 @@ import CollectionPage from '../views/CollectionPage.vue'
 import BuyInPage from '../views/BuyInPage';
 import SoldAwayPage from '../views/SoldAwayPage';
 import GoodsDisplayPage from '../views/GoodsDisplayPage.vue';
+import OrderPage from '../views/OrderPage'
 Vue.use(VueRouter)
 
 const routes = [
@@ -32,6 +33,13 @@ const routes = [
         name: 'goodsDisplayPage',
         path: '/goods',
         component: GoodsDisplayPage,
+        meta:{needAuth: true},
+    },
+
+        {
+        name: 'orderPage',
+        path: '/order',
+        component: OrderPage,
         meta:{needAuth: true},
     },
 
