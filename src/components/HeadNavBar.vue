@@ -16,9 +16,13 @@
         </el-button>
       </div>
       <div class="userDisplay">
-        <div class="user" v-show="!isAuth" @click="pushUserPage()">
-          <el-avatar :size="50" :src="circleUrl"></el-avatar>
-          <span id="userName">我是用户mmmmm名</span>
+        <div class="user" v-show="!isAuth">
+          <el-avatar
+            :size="50"
+            :src="circleUrl"
+            @click="pushUserPage()"
+          ></el-avatar>
+          <span id="userName" @click="pushUserPage()">我是用户mmmmm名</span>
           <div class="exit">
             <el-button
               class="headNavbar-Item btnColor"
@@ -42,14 +46,14 @@
       </div>
     </nav>
     <keep-alive>
-    <GoodsUpload></GoodsUpload>
+      <GoodsUpload></GoodsUpload>
     </keep-alive>
   </div>
 </template>
 
 <script>
 import NavSearchBar from "./NavSearchBar";
-import GoodsUpload from './GoodsUpload.vue';
+import GoodsUpload from "./GoodsUpload.vue";
 
 export default {
   data() {
@@ -65,7 +69,7 @@ export default {
 
   methods: {
     gUDVchange(value) {
-      console.log("send!!",value);
+      console.log("send!!", value);
       this.$store.commit("ChangeGoodsUploadDialogVisible", value);
     },
 
@@ -98,6 +102,17 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+.headNavbar {
+  height: 55px;
+  width: 100%;
+  background-color: rgba(215, 201, 201, 0.434);
+  display: flex;
+  align-items: center;
+  position: fixed;
+  z-index: 20;
+}
+
+
 .WebIcon {
   height: 40px;
   margin-left: 100px;

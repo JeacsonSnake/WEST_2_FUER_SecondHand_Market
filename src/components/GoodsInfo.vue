@@ -23,7 +23,7 @@
 
     <div class="goodsBtn">
       <el-button id="GBtn1" type="warning" icon="el-icon-star-off" circle></el-button>
-      <el-button id="GBtn2" type="primary">即刻下单！</el-button>
+      <el-button id="GBtn2" type="primary" @click="pushOrderPage()">即刻下单！</el-button>
     </div>
   </div>
 </template>
@@ -37,6 +37,15 @@ export default {
       sellerName: "gkmdtghkfghkf",
     };
   },
+
+  methods: {
+      pushOrderPage() {
+          this.$router.push({
+              name: 'OrderPage',
+              
+          })
+      }
+  }
 };
 </script>
 

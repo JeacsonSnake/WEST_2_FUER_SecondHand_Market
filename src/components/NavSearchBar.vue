@@ -1,13 +1,13 @@
 <template>
   <div class="navSearchBar">
-    <el-row style="width: 700px">
+    <el-row id="searchRow">
       <el-col>
         <el-input
           v-model="search"
           @focus="focus"
           @blur="blur"
           @keyup.enter.native="searchHandler"
-          placeholder="搜索商家或地点"
+          placeholder="搜索二手商品→"
           class="searchBar"
         >
           <el-button
@@ -21,9 +21,7 @@
         <el-card
           @mouseenter="enterSearchBoxHanlder"
           v-if="isSearch"
-          class="box-card"
           id="search-box"
-          style="position: relative; z-index: 15"
         >
           <dl v-if="isHistorySearch">
             <dt class="search-title" v-show="history">历史搜索</dt>
@@ -103,6 +101,14 @@ export default {
         searchStore.saveHistory(this.historySearchList);
       }
       this.history = this.historySearchList.length == 0 ? false : true;
+      let self = this;
+      this.isFocus = false;
+      this.$router.push({
+        name: "searchPage",
+        query: {
+          searchItem: self.search,
+        },
+      });
     },
     closeHandler(search) {
       this.historySearchList.splice(this.historySearchList.indexOf(search), 1);
@@ -133,29 +139,42 @@ export default {
 };
 </script>
 
-<style>
-.headNavbar {
-  height: 55px;
-  width: 100%;
-  background-color: rgba(215, 201, 201, 0.434);
-  display: flex;
-  align-items: center;
-  position: fixed;
-  z-index: 20;
-}
-
+<style  lang="scss" scoped>
 .left {
   margin-left: 200px;
 }
 
+#searchRow {
+  width: 700px;
+  border-radius: 12px;
+  overflow: hidden;
+  &:focus {
+    border: 0.5px solid #943233;
+  }
+}
+
 .searchBar {
   border-radius: 12px;
+  :focus {
+    border: 0.5px solid #943233;
+    border-radius: 12px 0 0 12px;
+  }
 }
 
 #search {
   background-color: #c03331;
   color: rgb(243, 232, 232);
   border-radius: 0%;
+}
+
+#search-box {
+  position: fixed;
+  z-index: 15;
+  width: 100%;
+  width: 641px;
+  height: 300px;
+  margin-top: 0px;
+  padding-bottom: 20px;
 }
 
 .search-title {
@@ -170,12 +189,5 @@ export default {
   float: right;
   margin-top: -2px;
   cursor: pointer;
-}
-
-#search-box {
-  width: 555px;
-  height: 300px;
-  margin-top: 0px;
-  padding-bottom: 20px;
 }
 </style>

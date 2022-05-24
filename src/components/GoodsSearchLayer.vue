@@ -1,7 +1,7 @@
 <template>
   <div class="goodsSearchLayer">
     <el-row :gutter="20">
-      <el-col :span="5" class="LayerCol" style="margin-top: 30px">
+      <el-col :span="5" class="LayerCol">
         <div class="grid-content bg-purple">
           <el-card :body-style="{ padding: '3px' }">
             <img
@@ -29,7 +29,7 @@
         </div>
       </el-col>
 
-      <el-col :span="5" class="LayerCol" style="margin-top: 30px">
+      <el-col :span="5" class="LayerCol">
         <div class="grid-content bg-purple">
           <el-card :body-style="{ padding: '3px' }">
             <img
@@ -57,7 +57,7 @@
         </div>
       </el-col>
 
-      <el-col :span="5" class="LayerCol" style="margin-top: 30px">
+      <el-col :span="5" class="LayerCol">
         <div class="grid-content bg-purple">
           <el-card :body-style="{ padding: '3px' }">
             <img
@@ -85,7 +85,7 @@
         </div>
       </el-col>
 
-      <el-col :span="5" class="LayerCol" style="margin-top: 30px">
+      <el-col :span="5" class="LayerCol">
         <div class="grid-content bg-purple">
           <el-card :body-style="{ padding: '3px' }">
             <img
@@ -114,347 +114,12 @@
       </el-col>
     </el-row>
 
-        <el-row :gutter="20">
-      <el-col :span="5" class="LayerCol" style="margin-top: 30px">
-        <div class="grid-content bg-purple">
-          <el-card :body-style="{ padding: '3px' }">
-            <img
-              src="https://shadow.elemecdn.com/app/element/hamburger.9cf7b091-55e9-11e9-a976-7f4d0b07eef6.png"
-              class="image"
-              style="border-radius: 5px"
-            />
-            <div style="padding: 14px">
-              <div class="goodsDiscript">
-                <span>{{ goodDis }}</span>
-              </div>
-              <div class="goodTags">
-                <el-tag class="goodTag">标签一</el-tag>
-                <el-tag class="goodTag">标签一</el-tag>
-              </div>
-              <div class="cardBottom clearfix">
-                <div class="user">
-                  <el-avatar :size="25" :src="circleUrl"></el-avatar>
-                  <div id="userName">我是用户mmmmm名</div>
-                </div>
-                <div class="goodsPrise">￥22</div>
-              </div>
-            </div>
-          </el-card>
-        </div>
-      </el-col>
-
-      <el-col :span="5" class="LayerCol" style="margin-top: 30px">
-        <div class="grid-content bg-purple">
-          <el-card :body-style="{ padding: '3px' }">
-            <img
-              src="https://shadow.elemecdn.com/app/element/hamburger.9cf7b091-55e9-11e9-a976-7f4d0b07eef6.png"
-              class="image"
-              style="border-radius: 5px"
-            />
-            <div style="padding: 14px">
-              <div class="goodsDiscript">
-                <span>{{ goodDis }}</span>
-              </div>
-              <div class="goodTags">
-                <el-tag class="goodTag">标签一</el-tag>
-                <el-tag class="goodTag">标签一</el-tag>
-              </div>
-              <div class="cardBottom clearfix">
-                <div class="user">
-                  <el-avatar :size="25" :src="circleUrl"></el-avatar>
-                  <div id="userName">我是用户mmmmm名</div>
-                </div>
-                <div class="goodsPrise">￥22</div>
-              </div>
-            </div>
-          </el-card>
-        </div>
-      </el-col>
-
-      <el-col :span="5" class="LayerCol" style="margin-top: 30px">
-        <div class="grid-content bg-purple">
-          <el-card :body-style="{ padding: '3px' }">
-            <img
-              src="https://shadow.elemecdn.com/app/element/hamburger.9cf7b091-55e9-11e9-a976-7f4d0b07eef6.png"
-              class="image"
-              style="border-radius: 5px"
-            />
-            <div style="padding: 14px">
-              <div class="goodsDiscript">
-                <span>{{ goodDis }}</span>
-              </div>
-              <div class="goodTags">
-                <el-tag class="goodTag">标签一</el-tag>
-                <el-tag class="goodTag">标签一</el-tag>
-              </div>
-              <div class="cardBottom clearfix">
-                <div class="user">
-                  <el-avatar :size="25" :src="circleUrl"></el-avatar>
-                  <div id="userName">我是用户mmmmm名</div>
-                </div>
-                <div class="goodsPrise">￥22</div>
-              </div>
-            </div>
-          </el-card>
-        </div>
-      </el-col>
-
-      <el-col :span="5" class="LayerCol" style="margin-top: 30px">
-        <div class="grid-content bg-purple">
-          <el-card :body-style="{ padding: '3px' }">
-            <img
-              src="https://shadow.elemecdn.com/app/element/hamburger.9cf7b091-55e9-11e9-a976-7f4d0b07eef6.png"
-              class="image"
-              style="border-radius: 5px"
-            />
-            <div style="padding: 14px">
-              <div class="goodsDiscript">
-                <span>{{ goodDis }}</span>
-              </div>
-              <div class="goodTags">
-                <el-tag class="goodTag">标签一</el-tag>
-                <el-tag class="goodTag">标签一</el-tag>
-              </div>
-              <div class="cardBottom clearfix">
-                <div class="user">
-                  <el-avatar :size="25" :src="circleUrl"></el-avatar>
-                  <div id="userName">我是用户mmmmm名</div>
-                </div>
-                <div class="goodsPrise">￥22</div>
-              </div>
-            </div>
-          </el-card>
-        </div>
-      </el-col>
-    </el-row>
-
-        <el-row :gutter="20">
-      <el-col :span="5" class="LayerCol" style="margin-top: 30px">
-        <div class="grid-content bg-purple">
-          <el-card :body-style="{ padding: '3px' }">
-            <img
-              src="https://shadow.elemecdn.com/app/element/hamburger.9cf7b091-55e9-11e9-a976-7f4d0b07eef6.png"
-              class="image"
-              style="border-radius: 5px"
-            />
-            <div style="padding: 14px">
-              <div class="goodsDiscript">
-                <span>{{ goodDis }}</span>
-              </div>
-              <div class="goodTags">
-                <el-tag class="goodTag">标签一</el-tag>
-                <el-tag class="goodTag">标签一</el-tag>
-              </div>
-              <div class="cardBottom clearfix">
-                <div class="user">
-                  <el-avatar :size="25" :src="circleUrl"></el-avatar>
-                  <div id="userName">我是用户mmmmm名</div>
-                </div>
-                <div class="goodsPrise">￥22</div>
-              </div>
-            </div>
-          </el-card>
-        </div>
-      </el-col>
-
-      <el-col :span="5" class="LayerCol" style="margin-top: 30px">
-        <div class="grid-content bg-purple">
-          <el-card :body-style="{ padding: '3px' }">
-            <img
-              src="https://shadow.elemecdn.com/app/element/hamburger.9cf7b091-55e9-11e9-a976-7f4d0b07eef6.png"
-              class="image"
-              style="border-radius: 5px"
-            />
-            <div style="padding: 14px">
-              <div class="goodsDiscript">
-                <span>{{ goodDis }}</span>
-              </div>
-              <div class="goodTags">
-                <el-tag class="goodTag">标签一</el-tag>
-                <el-tag class="goodTag">标签一</el-tag>
-              </div>
-              <div class="cardBottom clearfix">
-                <div class="user">
-                  <el-avatar :size="25" :src="circleUrl"></el-avatar>
-                  <div id="userName">我是用户mmmmm名</div>
-                </div>
-                <div class="goodsPrise">￥22</div>
-              </div>
-            </div>
-          </el-card>
-        </div>
-      </el-col>
-
-      <el-col :span="5" class="LayerCol" style="margin-top: 30px">
-        <div class="grid-content bg-purple">
-          <el-card :body-style="{ padding: '3px' }">
-            <img
-              src="https://shadow.elemecdn.com/app/element/hamburger.9cf7b091-55e9-11e9-a976-7f4d0b07eef6.png"
-              class="image"
-              style="border-radius: 5px"
-            />
-            <div style="padding: 14px">
-              <div class="goodsDiscript">
-                <span>{{ goodDis }}</span>
-              </div>
-              <div class="goodTags">
-                <el-tag class="goodTag">标签一</el-tag>
-                <el-tag class="goodTag">标签一</el-tag>
-              </div>
-              <div class="cardBottom clearfix">
-                <div class="user">
-                  <el-avatar :size="25" :src="circleUrl"></el-avatar>
-                  <div id="userName">我是用户mmmmm名</div>
-                </div>
-                <div class="goodsPrise">￥22</div>
-              </div>
-            </div>
-          </el-card>
-        </div>
-      </el-col>
-
-      <el-col :span="5" class="LayerCol" style="margin-top: 30px">
-        <div class="grid-content bg-purple">
-          <el-card :body-style="{ padding: '3px' }">
-            <img
-              src="https://shadow.elemecdn.com/app/element/hamburger.9cf7b091-55e9-11e9-a976-7f4d0b07eef6.png"
-              class="image"
-              style="border-radius: 5px"
-            />
-            <div style="padding: 14px">
-              <div class="goodsDiscript">
-                <span>{{ goodDis }}</span>
-              </div>
-              <div class="goodTags">
-                <el-tag class="goodTag">标签一</el-tag>
-                <el-tag class="goodTag">标签一</el-tag>
-              </div>
-              <div class="cardBottom clearfix">
-                <div class="user">
-                  <el-avatar :size="25" :src="circleUrl"></el-avatar>
-                  <div id="userName">我是用户mmmmm名</div>
-                </div>
-                <div class="goodsPrise">￥22</div>
-              </div>
-            </div>
-          </el-card>
-        </div>
-      </el-col>
-    </el-row>
-
-        <el-row :gutter="20">
-      <el-col :span="5" class="LayerCol" style="margin-top: 30px">
-        <div class="grid-content bg-purple">
-          <el-card :body-style="{ padding: '3px' }">
-            <img
-              src="https://shadow.elemecdn.com/app/element/hamburger.9cf7b091-55e9-11e9-a976-7f4d0b07eef6.png"
-              class="image"
-              style="border-radius: 5px"
-            />
-            <div style="padding: 14px">
-              <div class="goodsDiscript">
-                <span>{{ goodDis }}</span>
-              </div>
-              <div class="goodTags">
-                <el-tag class="goodTag">标签一</el-tag>
-                <el-tag class="goodTag">标签一</el-tag>
-              </div>
-              <div class="cardBottom clearfix">
-                <div class="user">
-                  <el-avatar :size="25" :src="circleUrl"></el-avatar>
-                  <div id="userName">我是用户mmmmm名</div>
-                </div>
-                <div class="goodsPrise">￥22</div>
-              </div>
-            </div>
-          </el-card>
-        </div>
-      </el-col>
-
-      <el-col :span="5" class="LayerCol" style="margin-top: 30px">
-        <div class="grid-content bg-purple">
-          <el-card :body-style="{ padding: '3px' }">
-            <img
-              src="https://shadow.elemecdn.com/app/element/hamburger.9cf7b091-55e9-11e9-a976-7f4d0b07eef6.png"
-              class="image"
-              style="border-radius: 5px"
-            />
-            <div style="padding: 14px">
-              <div class="goodsDiscript">
-                <span>{{ goodDis }}</span>
-              </div>
-              <div class="goodTags">
-                <el-tag class="goodTag">标签一</el-tag>
-                <el-tag class="goodTag">标签一</el-tag>
-              </div>
-              <div class="cardBottom clearfix">
-                <div class="user">
-                  <el-avatar :size="25" :src="circleUrl"></el-avatar>
-                  <div id="userName">我是用户mmmmm名</div>
-                </div>
-                <div class="goodsPrise">￥22</div>
-              </div>
-            </div>
-          </el-card>
-        </div>
-      </el-col>
-
-      <el-col :span="5" class="LayerCol" style="margin-top: 30px">
-        <div class="grid-content bg-purple">
-          <el-card :body-style="{ padding: '3px' }">
-            <img
-              src="https://shadow.elemecdn.com/app/element/hamburger.9cf7b091-55e9-11e9-a976-7f4d0b07eef6.png"
-              class="image"
-              style="border-radius: 5px"
-            />
-            <div style="padding: 14px">
-              <div class="goodsDiscript">
-                <span>{{ goodDis }}</span>
-              </div>
-              <div class="goodTags">
-                <el-tag class="goodTag">标签一</el-tag>
-                <el-tag class="goodTag">标签一</el-tag>
-              </div>
-              <div class="cardBottom clearfix">
-                <div class="user">
-                  <el-avatar :size="25" :src="circleUrl"></el-avatar>
-                  <div id="userName">我是用户mmmmm名</div>
-                </div>
-                <div class="goodsPrise">￥22</div>
-              </div>
-            </div>
-          </el-card>
-        </div>
-      </el-col>
-
-      <el-col :span="5" class="LayerCol" style="margin-top: 30px">
-        <div class="grid-content bg-purple">
-          <el-card :body-style="{ padding: '3px' }">
-            <img
-              src="https://shadow.elemecdn.com/app/element/hamburger.9cf7b091-55e9-11e9-a976-7f4d0b07eef6.png"
-              class="image"
-              style="border-radius: 5px"
-            />
-            <div style="padding: 14px">
-              <div class="goodsDiscript">
-                <span>{{ goodDis }}</span>
-              </div>
-              <div class="goodTags">
-                <el-tag class="goodTag">标签一</el-tag>
-                <el-tag class="goodTag">标签一</el-tag>
-              </div>
-              <div class="cardBottom clearfix">
-                <div class="user">
-                  <el-avatar :size="25" :src="circleUrl"></el-avatar>
-                  <div id="userName">我是用户mmmmm名</div>
-                </div>
-                <div class="goodsPrise">￥22</div>
-              </div>
-            </div>
-          </el-card>
-        </div>
-      </el-col>
-    </el-row>
+    <el-pagination
+    :hidden="value"
+    layout="prev, pager, next"
+    :total="50">
+  </el-pagination>
+  
   </div>
 </template>
 
@@ -462,9 +127,9 @@
 export default {
   data() {
     return {
-      currentDate: new Date(),
       goodDis: "好吃的汉堡AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
       circleUrl: "",
+      value: false
     };
   },
 };
@@ -472,10 +137,13 @@ export default {
 
 <style lang="scss" scoped>
 .goodsSearchLayer {
+  border-radius: 12px;
   height: auto;
+  min-height: 608px;
+  max-height: 1260px;
   width: 1300px;
-  margin: 0 auto 20PX auto;
-  border-radius: 0 0 12PX 12PX;
+  margin: 20px auto;
+  border-radius: 12px;
   position: relative;
   display: flex;
   flex-direction: column;
@@ -484,6 +152,10 @@ export default {
 
 .el-row {
   margin-bottom: 20px;
+  &:first-child{
+      margin-top: 30px
+  }
+
   &:last-child {
     margin-bottom: 0;
   }
@@ -532,7 +204,6 @@ export default {
   display: flex;
   align-items: center;
   justify-content: space-between;
-
 }
 
 .button {
@@ -573,6 +244,6 @@ export default {
 }
 
 .goodsPrise {
-    color: rgb(240, 65, 65);
+  color: rgb(240, 65, 65);
 }
 </style>

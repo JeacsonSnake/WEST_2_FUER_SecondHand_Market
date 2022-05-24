@@ -26,7 +26,12 @@ const routes = [
         name: 'searchPage',
         path: '/search',
         component: SearchPage,
-        meta:{needAuth: true},
+        meta: { needAuth: true },
+        props($route) {
+            return {
+                searchItem: $route.query.searchItem,
+            }
+        }
     },
 
     {
@@ -95,7 +100,13 @@ VueRouter.prototype.push = function push(location) {
 }
 
 const router = new VueRouter({
-  routes
+    routes,
+    scrollBehavior(to, from, savedPosition) {
+        if (savedPosition && to.meta.keepAlive) {
+            return savedPosition;
+        }
+        return { x: 0, y: 0 };
+    },
 })
 
 router.beforeEach((to, from, next) => {

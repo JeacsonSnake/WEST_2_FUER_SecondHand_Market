@@ -25,7 +25,8 @@ import {
     MessageBox,
     Select,
     Option,
-    Upload
+    Upload,
+    Pagination
 } from 'element-ui';
 
 Vue.config.productionTip = false;
@@ -53,6 +54,7 @@ Vue.component(Dialog.name, Dialog);
 Vue.component(Select.name, Select);
 Vue.component(Option.name, Option);
 Vue.component(Upload.name, Upload);
+Vue.component(Pagination.name, Pagination);
 
 /* import the fontawesome core */
 import { library } from '@fortawesome/fontawesome-svg-core'
