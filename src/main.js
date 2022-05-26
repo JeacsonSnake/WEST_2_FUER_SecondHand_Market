@@ -26,7 +26,8 @@ import {
     Select,
     Option,
     Upload,
-    Pagination
+    Pagination,
+    Tooltip,
 } from 'element-ui';
 
 Vue.config.productionTip = false;
@@ -55,6 +56,7 @@ Vue.component(Select.name, Select);
 Vue.component(Option.name, Option);
 Vue.component(Upload.name, Upload);
 Vue.component(Pagination.name, Pagination);
+Vue.component(Tooltip.name,Tooltip)
 
 /* import the fontawesome core */
 import { library } from '@fortawesome/fontawesome-svg-core'
