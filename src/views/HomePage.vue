@@ -23,6 +23,12 @@ export default {
     GoodsLayer,
     FooterBlock,
   },
+
+  methods: {
+
+  },
+
+
 };
 </script>
 

@@ -1,5 +1,6 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
+import { findSellingGood } from "../api";
 
 Vue.use(Vuex)
 
@@ -8,6 +9,7 @@ export default new Vuex.Store({
         ifBar: true,
         isAuth: false,
         goodsUploadDialogVisible: false,
+        sellingGoodsData:[],
         footPrintData: [
 
             {
@@ -57,9 +59,25 @@ export default new Vuex.Store({
         ChangeGoodsUploadDialogVisible(state, value) {
             console.log("change!", value);
             state.goodsUploadDialogVisible = value;
+        },
+        GETSELLINGGOODSDATA(state, value) {
+            state.sellingGoodsData = value;
         }
   },
-  actions: {
+    actions: {
+        async getSellingGoodsData(context, value) {
+           await findSellingGood().then((res) => {
+                console.log(`res`, res);
+                if (res.code === 200) {
+                    context.commit('GETSELLINGGOODSDATA', res.data);
+                } else {
+                    throw 'Err!'
+                }
+            }).catch((err) => {
+                console.log(err);
+            })
+
+      }
   },
   modules: {
   }
