@@ -52,6 +52,8 @@ Vue.component(Empty.name, Empty);
 Vue.component(Table.name, Table);
 Vue.component(TableColumn.name, TableColumn);
 Vue.component(Dialog.name, Dialog);
+Vue.component(Message.name, Message);
+Vue.component(MessageBox.name, MessageBox);
 Vue.component(Select.name, Select);
 Vue.component(Option.name, Option);
 Vue.component(Upload.name, Upload);

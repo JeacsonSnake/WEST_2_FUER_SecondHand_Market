@@ -1,16 +1,18 @@
 <template>
-  <div class="userDisplay">
+  <div class="userDisplay" v-if="getData">
     <div class="userInfoLayer">
       <el-avatar :size="200" :src="circleUrl"></el-avatar>
       <div class="userInfo">
         <div class="userName">
-          <span>用户名： wwwwwwwww</span>
+          <span>用户名： {{ userData[0].username }}</span>
         </div>
         <div class="userSex">
-          <span>性别： ♂</span>
+          <span>联系电话：{{ userData[0].contact }} </span>
         </div>
         <div class="btnHov">
-          <el-button style="margin-left: 50px" round>修改信息</el-button>
+          <el-button style="margin-left: 50px" round disabled
+            >修改信息</el-button
+          >
         </div>
       </div>
     </div>
@@ -47,32 +49,53 @@
 export default {
   data() {
     return {
-      circleUrl: "",
+      circleUrl: "https://cube.elemecdn.com/3/7c/3ea6beec64369c2642b92c6726f1epng.png",
+      userData: [],
+      getData: false,
     };
   },
 
   methods: {
-    pushFootPrint() {
+    async pushFootPrint() {
+      await this.$store.dispatch("getFootPrintData", this.userData[0].id);
+      this.$store.commit("CHANGEEMPTY", false);
       this.$router.push({
         name: "footPrintPage",
       });
     },
-    pushCollection() {
+    async pushCollection() {
+      await this.$store.dispatch("getCollectionData", this.userData[0].id);
+      this.$store.commit("CHANGEEMPTY", false);
       this.$router.push({
         name: "CollectionPage",
       });
     },
-    pushBuyIn() {
+    async pushBuyIn() {
+      await this.$store.dispatch("getBuyInData", this.userData[0].id);
+      this.$store.commit("CHANGEEMPTY", false);
       this.$router.push({
         name: "BuyInPage",
       });
     },
-    pushSoldAway() {
+    async pushSoldAway() {
+      await this.$store.dispatch("getSoldAwayData", this.userData[0].id);
+      this.$store.commit("CHANGEEMPTY", false);
       this.$router.push({
         name: "SoldAwayPage",
       });
     },
   },
+
+  async created() {
+    this.userData = await this.$store.state.userData;
+    console.log(`this.$store.state.userData`, this.$store.state.userData);
+    console.log(`this.userData`, this.userData);
+    if (this.userData !== []) {
+      this.getData = true;
+    }
+  },
+
+  mounted() {},
 };
 </script>
 
@@ -140,7 +163,5 @@ export default {
   color: #ff4040;
   border-color: #ffc6c6;
   background-color: #ffecec;
-}
-.userBtn {
 }
 </style>

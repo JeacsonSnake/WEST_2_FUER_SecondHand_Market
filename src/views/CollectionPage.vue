@@ -1,20 +1,20 @@
 <template>
   <div class="collection">
     <span class="layerTitle">我的收藏</span>
-    <el-table :data="collectionData" border class="collectionTable">
-      <el-table-column prop="date" label="日期" width="180"> </el-table-column>
-      <el-table-column prop="name" label="姓名" width="180"> </el-table-column>
-      <el-table-column prop="address" label="地址"> </el-table-column>
-      <el-table-column fixed="right" label="操作" width="120">
-        <template slot-scope="scope">
-          <el-button
-            @click.native.prevent="deleteRow(scope.$index, collectionData)"
-            type="text"
-            size="small"
-          >
-            移除
-          </el-button>
-        </template>
+    <el-table :data="collectionData" border class="collectionTable" v-show="getData">
+      <el-table-column prop="id" label="商品ID" width="180"> </el-table-column>
+      <el-table-column prop="type" label="商品标签" width="180">
+      </el-table-column>
+      <el-table-column prop="goodDescrip" label="商品描述" width="580">
+      </el-table-column>
+      <el-table-column prop="state" label="商品状态" width="180">
+      </el-table-column>
+      <el-table-column
+        fixed="right"
+        prop="updateTime"
+        label="访问时间"
+        width="120"
+      >
       </el-table-column>
     </el-table>
   </div>
@@ -22,23 +22,47 @@
 
 <script>
 export default {
-  computed: {
-    collectionData() {
-      return this.$store.state.collectionData;
+  data() {
+        return {
+            getData: false,
+            collectionData: []
+        }
     },
-  },
+    computed: {},
 
-  methods: {
-    deleteRow(index, rows) {
-      rows.splice(index, 1);
+    methods: {
+        deleteRow(index, rows) {
+            rows.splice(index, 1);
+        },
     },
+
+    async created() {
+    this.collectionData = await this.$store.state.collectionData;
+    console.log(`this.collectionData`, this.collectionData);
+    if (this.collectionData !== []) {
+      this.collectionData.forEach(function (collectionData) {
+        collectionData.updateTime =
+          collectionData.updateTime[0] +
+          "年" +
+          collectionData.updateTime[1] +
+          "月" +
+          collectionData.updateTime[2] +
+          "日 " +
+          collectionData.updateTime[3] +
+          ":" +
+          collectionData.updateTime[4] +
+          ":" +
+          collectionData.updateTime[5];
+      });
+      this.getData = true;
+    }
   },
 };
 </script>
 
 <style lang="scss" scoped>
 .collection {
-  height: 1300px;
+  height: auto;
   width: 1200px;
   margin: 30px auto;
   border: 2px solid rgb(196, 196, 196);

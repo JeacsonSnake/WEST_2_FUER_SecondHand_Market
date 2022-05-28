@@ -3,7 +3,8 @@
     <div id="navBar"></div>
     <div class="userLayer">
       <UserDisplay></UserDisplay>
-      <router-view></router-view>
+      <el-empty description="请点击按钮获取更多信息" v-show="empty"></el-empty>
+      <router-view v-show="!empty"></router-view>
     </div>
     <FooterBlock></FooterBlock>
   </div>
@@ -13,17 +14,22 @@
 import FooterBlock from "@/components/FooterBlock";
 import UserDisplay from "@/components/UserDisplay.vue";
 export default {
+  computed: {
+      empty(){
+          return this.$store.state.isEmpty;
+      }
+  },
+
   components: {
     FooterBlock,
     UserDisplay,
   },
 
   methods: {
-      ddd() {
-          console.log(this.$route.path);
-      }
+    ddd() {
+      console.log(this.$route.path);
+    },
   },
-
 };
 </script>
 
@@ -34,7 +40,7 @@ export default {
   background-color: rgb(227, 198, 198);
 }
 .userLayer {
-  height: 1500px;
+  min-height: 608px;
   width: 1300px;
   margin: 20px auto;
   border-radius: 12px;

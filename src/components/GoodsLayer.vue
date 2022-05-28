@@ -5,13 +5,14 @@
         :span="5"
         class="LayerCol"
         style="margin-top: 30px"
-        v-for="Goods in sellingGoodsData"
+        v-for="Goods in sellingGoodsData.slice(0,8)"
       >
         <div class="grid-content bg-purple">
           <el-card :body-style="{ padding: '3px' }">
-            <img
+            <el-image
               :src="'http://' + Goods.pictureUrl[0]"
               class="image"
+              lazy
             />
             <div style="padding: 14px">
               <div class="goodsDiscript">
@@ -45,7 +46,7 @@ export default {
     return {
       currentDate: new Date(),
       goodDis: "好吃的汉堡AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
-      circleUrl: "",
+      circleUrl: "https://cube.elemecdn.com/3/7c/3ea6beec64369c2642b92c6726f1epng.png",
       sellingGoodsData: [],
     };
   },

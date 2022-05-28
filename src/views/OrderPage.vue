@@ -18,8 +18,6 @@
 
           <div class="goodsTags">
             <el-tag>标签一</el-tag>
-            <el-tag>标签一</el-tag>
-            <el-tag>标签一</el-tag>
           </div>
 
           <div class="sellerLayer">
@@ -43,8 +41,10 @@
       </div>
       <hr />
       <div class="confirmBtn">
-        <el-button id="Btn1" type="info" round>信息按钮</el-button>
-        <el-button id="Btn2" round>成功按钮</el-button>
+        <el-button id="Btn1" type="info" round @click="pushHomePage()"
+          >取消</el-button
+        >
+        <el-button id="Btn2" round @click="orderConfirm()">确认订单</el-button>
       </div>
     </div>
     <FooterBlock></FooterBlock>
@@ -62,6 +62,36 @@ export default {
   },
   components: {
     FooterBlock,
+  },
+
+  methods: {
+    pushHomePage() {
+      this.$router.push({
+        name: "homePage",
+      });
+    },
+
+    orderConfirm() {
+      this.$confirm("确认购买?", "提示", {
+        confirmButtonText: "确定",
+        cancelButtonText: "取消",
+        type: "warning",
+      })
+        .then(() => {
+
+          this.$message({
+            type: "success",
+            message: "购买成功!请记得联系卖家交货！",
+          });
+          this.pushHomePage();
+        })
+        .catch(() => {
+          this.$message({
+            type: "info",
+            message: "已取消下单！",
+          });
+        });
+    },
   },
 };
 </script>
@@ -97,9 +127,10 @@ export default {
 
 .goodsInOrder {
   width: 1100px;
-  height: 220px;
+  min-height: 320px;
   margin: 20px;
   display: flex;
+  border-radius: 12px;
   background-color: rgb(163, 118, 118);
   align-items: center;
 }
@@ -197,7 +228,7 @@ export default {
 }
 
 .confirmBtn {
-  margin-top: 108px;
+  margin-top: 78px;
   height: 100%;
   width: 400px;
   span {
@@ -205,6 +236,7 @@ export default {
   }
 
   #Btn1 {
+    margin-right: 50px;
   }
 
   #Btn2:hover,

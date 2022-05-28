@@ -20,9 +20,9 @@
           <el-avatar
             :size="50"
             :src="circleUrl"
-            @click="pushUserPage()"
+            @click="pushUserPage(3)"
           ></el-avatar>
-          <span id="userName" @click="pushUserPage()">我是用户mmmmm名</span>
+          <span id="userName" @click="pushUserPage(3)">我是用户mmmmm名</span>
           <div class="exit">
             <el-button
               class="headNavbar-Item btnColor"
@@ -58,7 +58,7 @@ import GoodsUpload from "./GoodsUpload.vue";
 export default {
   data() {
     return {
-      circleUrl: "",
+      circleUrl: "https://cube.elemecdn.com/3/7c/3ea6beec64369c2642b92c6726f1epng.png",
     };
   },
 
@@ -83,7 +83,8 @@ export default {
         name: "login",
       });
     },
-    pushUserPage() {
+    async pushUserPage(userId) {
+    await this.$store.dispatch("getUserByID", userId);
       this.$router.push({
         name: "userPage",
       });
@@ -111,7 +112,6 @@ export default {
   position: fixed;
   z-index: 20;
 }
-
 
 .WebIcon {
   height: 40px;

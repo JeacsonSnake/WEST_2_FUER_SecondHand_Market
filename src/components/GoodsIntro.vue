@@ -7,13 +7,13 @@
           {{goodsIntro}}
       </div>
     </div>
-
+<!-- 
     <div class="goodsDesLayer">
       <span class="title">商品评论：</span>
       <div class="goodsDes">
           <ul></ul>
       </div>
-    </div>
+    </div> -->
 
   </div>
 
@@ -61,7 +61,7 @@ export default {
 .goodsDes {
     width: 80%;
     height: auto;
-    max-height: 200px;
+    max-height: 400px;
     border: 2px solid #fff;
     margin-left: 20px;
     width: 550px;

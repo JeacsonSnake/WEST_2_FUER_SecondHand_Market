@@ -4,28 +4,52 @@
     <div class="cl">
       <ul>
         <li>
-          <font-awesome-icon icon="fa-regular fa-keyboard" /><a href="">1</a
-          ><span>/</span><a href="">2</a><span>/</span><a href="">3</a>
+          <font-awesome-icon icon="fa-regular fa-keyboard" />
+          <a href="">玩具</a>
+          <span>/</span>
+          <a href="">玩具</a>
+          <span>/</span>
+          <a href="">光学镜头</a>
         </li>
         <li>
-          <i class="el-icon-basketball"></i><a href="">1</a><span>/</span><a href="">2</a><span>/</span
-          ><a href="">3</a>
+          <i class="el-icon-basketball"></i>
+          <router-link to="">鞋子</router-link>
+          <span>/</span>
+          <a href="">鞋子</a>
+          <span>/</span>
+          <a href="">鞋子</a>
         </li>
         <li>
-          <i class="el-icon-umbrella"></i><a href="">1</a><span>/</span><a href="">2</a><span>/</span
-          ><a href="">3</a>
+          <i class="el-icon-umbrella"></i>
+          <a href="">生活用品</a>
+          <span>/</span>
+          <a href="">电子垃圾</a>
+          <span>/</span>
+          <a href="">饰品</a>
         </li>
         <li>
-          <i class="el-icon-bicycle"></i><a href="">1</a><span>/</span><a href="">2</a><span>/</span
-          ><a href="">3</a>
+          <i class="el-icon-bicycle"></i>
+          <a href="">学习用品</a>
+          <span>/</span>
+          <a href="">饰品</a>
+          <span>/</span>
+          <a href="">饰品</a>
         </li>
         <li>
-          <i class="el-icon-umbrella"></i><a href="">1</a><span>/</span><a href="">2</a><span>/</span
-          ><a href="">3</a>
+          <i class="el-icon-umbrella"></i>
+          <a href="">书籍</a>
+          <span>/</span>
+          <a href="">书籍</a>
+          <span>/</span>
+          <a href="">书籍</a>
         </li>
         <li>
-          <i class="el-icon-umbrella"></i><a href="">1</a><span>/</span><a href="">2</a><span>/</span
-          ><a href="">3</a>
+          <i class="el-icon-umbrella"></i>
+          <a href="">虚拟物品</a>
+          <span>/</span>
+          <a href="">虚拟物品</a>
+          <span>/</span>
+          <a href="">玩具</a>
         </li>
       </ul>
     </div>
@@ -59,7 +83,8 @@ export default {};
       margin-bottom: 14px;
       width: 212px;
       color: #666;
-      svg,i {
+      svg,
+      i {
         margin-right: 12px;
         font-size: 16px;
         width: 16px;
