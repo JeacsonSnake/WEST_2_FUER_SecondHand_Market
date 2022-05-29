@@ -73,3 +73,15 @@ export const findCollect = (value) => {
         }
     })
 }
+
+export const registerModule = (value) => {
+    //发请求
+    return requests({
+        url: 'http://4934d114v1.qicp.vip/user/regist',
+        method: 'post',
+        params: {
+            username: value.username,
+            password: value.password
+        }
+    })
+}

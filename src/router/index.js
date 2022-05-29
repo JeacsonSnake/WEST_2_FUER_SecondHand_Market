@@ -1,7 +1,7 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
 import Login from '../views/Login.vue'
-import Rigister from '../views/Register.vue'
+import Register from '../views/Register.vue'
 import store from '../store'
 import HomePage from '../views/HomePage.vue'
 import SearchPage from '../views/SearchPage'
@@ -85,9 +85,9 @@ const routes = [
     },
     
     {
-        path: '/rigister',
-        name: 'rigister',
-        component: Rigister,
+        path: '/register',
+        name: 'register',
+        component: Register,
         meta:{noBar: true}
     },
 

@@ -59,16 +59,20 @@
               round
               >提交</el-button
             >
-            <el-button round @click="resetForm('ruleForm')" style="width: 180px"
-              >清空</el-button
+            <el-button
+              round
+              @click="resetForm('ruleForm')"
+              style="width: 180px"
             >
+              清空
+            </el-button>
+          </el-form-item>
+          <el-form-item class="checkAttr">
+            <el-checkbox v-model="ruleForm.check">
+              我已阅读并同意「用户协议」和「隐私条款」
+            </el-checkbox>
           </el-form-item>
         </el-form>
-        <div class="checkAttr">
-          <el-checkbox v-model="ruleForm.check"
-            >我已阅读并同意「用户协议」和「隐私条款」</el-checkbox
-          >
-        </div>
         <div style="display: flex; padding-left: 225px">
           <span>已经注册? <router-link to="/login">登录</router-link></span>
         </div>
@@ -98,6 +102,7 @@ export default {
         callback();
       }
     };
+
     const validatePass2 = (rule, value, callback) => {
       if (value === "") {
         callback(new Error("请再次输入密码"));
@@ -107,6 +112,7 @@ export default {
         callback();
       }
     };
+
     return {
       ruleForm: {
         userName: "",
@@ -114,6 +120,7 @@ export default {
         checkPass: "",
         check: false,
       },
+
       rules: {
         userName: [
           { validator: validateUserName, trigger: "blur" },
@@ -125,23 +132,50 @@ export default {
     };
   },
   methods: {
-    submitForm(formName) {
-      if (isAgree) {
-        this.$refs[formName].validate((valid) => {
+    submitForm() {
+      if (this.$refs.ruleForm.model.check) {
+        this.$refs.ruleForm.validate(async (valid) => {
           if (valid) {
-            alert("提交成功！正在跳转至登陆界面！");
-            this.$router.push("/login");
+            const v = {
+              username: this.$refs.ruleForm.model.userName,
+              password: this.$refs.ruleForm.model.pass,
+            };
+            await this.$store.dispatch("regist", v);
+            let repeat = await this.fetchIsRepeat();
+            if (repeat) {
+              this.$nextTick(() => {
+                this.$message({
+                  message: "该用户名已存在！！",
+                  type: "error",
+                });
+                this.$store.commit("ISREPEAT", false);
+              });
+            } else {
+              this.$message({
+                message: "提交成功！跳转至登陆界面",
+                type: "success",
+              });
+              this.$router.push("/login");
+            }
           } else {
-            console.log("提交失败！请重新提交！");
+            this.$message({
+              message: "提交失败！请重新提交！",
+              type: "warning",
+            });
             return false;
           }
         });
       } else {
-        alert("请先阅读并同意「用户协议」和「隐私条款」再进行提交！");
+        this.$message("请先阅读并同意「用户协议」和「隐私条款」再进行提交！");
       }
     },
-    resetForm(formName) {
-      this.$refs[formName].resetFields();
+    resetForm() {
+      this.$refs.ruleForm.resetFields();
+    },
+
+    async fetchIsRepeat() {
+      const re = await this.$store.state.isRepeat;
+      return re;
     },
   },
 };

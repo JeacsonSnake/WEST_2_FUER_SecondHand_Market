@@ -8,6 +8,7 @@ import {
     searchBuyerGoods,
     findHistory,
     findCollect,
+    registerModule
 
 } from "../api";
 
@@ -21,7 +22,7 @@ export default new Vuex.Store({
         sellingGoodsData: [],
         isEmpty: true,
         footPrintData: [],
-        
+        isRepeat: false,
         collectionData: [],
 
         buyInData: [],
@@ -72,6 +73,10 @@ export default new Vuex.Store({
 
         CHANGEEMPTY(state, value) {
             state.isEmpty = value;
+        },
+
+        ISREPEAT(state, value) {
+            state.isRepeat = value;
         }
 
   },
@@ -155,6 +160,20 @@ export default new Vuex.Store({
                 console.log(err);
             })
         },
+
+        async regist(context, value) {
+            await registerModule(value).then((res) => {
+                if (res.code === 200) {
+                    context.commit('ISREPEAT', false);
+                } else if (res.code === 409) {
+                    context.commit('ISREPEAT', true);
+                }else {
+                    throw 'Err!'
+                }
+            }).catch((err) => {
+                console.log(err);
+            })
+        }
   },
   modules: {
   }

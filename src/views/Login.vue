@@ -48,13 +48,17 @@
               round
               >提交</el-button
             >
-            <el-button round @click="resetForm('ruleForm')" style="width: 180px"
+            <el-button
+              round
+              @click="resetForm('ruleForm')"
+              style="width: 180px"
+              class="btns"
               >清空</el-button
             >
           </el-form-item>
         </el-form>
         <div style="display: flex; padding-left: 225px">
-          <span>还未注册? <router-link to="/rigister">注册</router-link></span>
+          <span>还未注册? <router-link to="/register">注册</router-link></span>
         </div>
       </div>
     </div>
@@ -120,7 +124,7 @@ a {
   display: flex;
   justify-content: center;
   align-items: center;
-  background-color: rgb(48, 41, 41);
+  background-color: rgb(89, 57, 57);
 }
 
 .blurBlock {
@@ -151,5 +155,12 @@ a {
 
 #SmallTitle {
   font-size: 6px;
+}
+
+.btns:hover,
+.btns:focus {
+  color: #e4cbcb;
+  border-color: #e6635e;
+  background-color: #d85851;
 }
 </style>
