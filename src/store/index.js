@@ -85,6 +85,10 @@ export default new Vuex.Store({
             state.inputError = value;
         },
 
+        SETAUTH(state, value) {
+            state.isAuth = value;
+        }
+
   },
     actions: {
        async getSellingGoodsData(context, value) {
@@ -193,6 +197,7 @@ export default new Vuex.Store({
                         name: res.data.name
                     }
                     context.commit('INPUTERROR', false);
+                    context.commit('SETAUTH', true);
                     window.sessionStorage.setItem("token", res.data.token);
                     window.localStorage.setItem("user",JSON.stringify(user));
 

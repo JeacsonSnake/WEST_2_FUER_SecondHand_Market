@@ -16,26 +16,26 @@
         </el-button>
       </div>
       <div class="userDisplay">
-        <div class="user" v-show="!isAuth">
+        <div class="user" v-show="isAuth">
           <el-avatar
             :size="50"
             :src="circleUrl"
             @click="pushUserPage(3)"
           ></el-avatar>
-          <span id="userName" @click="pushUserPage(3)">我是用户mmmmm名</span>
+          <span id="userName" @click="pushUserPage(3)">{{username}}</span>
           <div class="exit">
             <el-button
               class="headNavbar-Item btnColor"
               style="margin-left: 20px"
               round
-              @click="pushLoginPage"
+              @click="logOut"
               type="danger"
             >
               退出
             </el-button>
           </div>
         </div>
-        <div class="userLogin" v-show="isAuth">
+        <div class="userLogin" v-show="!isAuth">
           <el-button
             class="headNavbar-Item btnColor"
             round
@@ -57,8 +57,12 @@ import GoodsUpload from "./GoodsUpload.vue";
 
 export default {
   data() {
+    const user = JSON.parse(window.localStorage.getItem("user"));
     return {
-      circleUrl: "https://cube.elemecdn.com/3/7c/3ea6beec64369c2642b92c6726f1epng.png",
+      circleUrl:
+        "https://cube.elemecdn.com/3/7c/3ea6beec64369c2642b92c6726f1epng.png",
+      username: user.name,
+      id: user.id,
     };
   },
 
@@ -83,8 +87,20 @@ export default {
         name: "login",
       });
     },
+
+    logOut() {
+      this.$store.commit("SETAUTH", false);
+      this.$message({
+        message: "登出成功！",
+        type: "success",
+      });
+      window.sessionStorage.removeItem("token");
+      window.localStorage.removeItem("user");
+      this.pushHomePage();
+    },
+
     async pushUserPage(userId) {
-    await this.$store.dispatch("getUserByID", userId);
+      await this.$store.dispatch("getUserByID", userId);
       this.$router.push({
         name: "userPage",
       });
