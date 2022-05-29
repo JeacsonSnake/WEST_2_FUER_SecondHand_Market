@@ -70,6 +70,9 @@ import { faKeyboard } from '@fortawesome/free-regular-svg-icons'
 /* import font awesome icon component */
 import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'
 
+
+Vue.prototype.$httpRequestList = [];    //管理所有请求中断方法的集合
+
 /* add icons to the library */
 library.add(faUserSecret,faKeyboard)
 

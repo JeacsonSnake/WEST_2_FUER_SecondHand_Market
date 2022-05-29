@@ -9,10 +9,11 @@ const requests = axios.create({
     // headers: headers
 })
 //请求拦截器
-
+//请求在到达服务器之前，先会调用use中的这个回调函数来添加请求头信息
 requests.interceptors.request.use((config) => {
     //cconfig: 配置对象
-
+    //为请求头对象，添加token验证的Authorization字段
+  config.headers.Authorization = window.sessionStorage.getItem("token")
     return config;
 })
 
@@ -20,8 +21,9 @@ requests.interceptors.request.use((config) => {
 requests.interceptors.response.use((res) => {
     return res.data;
 }, (err) => {
-    alert(err);
-    return Promise.reject(new Error('Server failed!'));
+    // alert(err);
+    // return Promise.reject(new Error('Server failed!'));
+    return err.response;
 })
 
 //对外暴露

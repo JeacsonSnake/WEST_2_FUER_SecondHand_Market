@@ -45,8 +45,9 @@
                 width: 180px;
                 margin-right: 40px;
               "
+              :loading="load"
               round
-              >提交</el-button
+              >登录</el-button
             >
             <el-button
               round
@@ -93,13 +94,36 @@ export default {
         userName: [{ validator: validateUserName, trigger: "blur" }],
         pass: [{ validator: validatePass, trigger: "blur" }],
       },
+      load:false
     };
   },
   methods: {
-    submitForm(formName) {
-      this.$refs[formName].validate((valid) => {
+    submitForm() {
+        this.load = true;
+      this.$refs.ruleForm.validate(async (valid) => {
         if (valid) {
-          alert("submit!");
+          const v = {
+            username: this.$refs.ruleForm.model.userName,
+            password: this.$refs.ruleForm.model.pass,
+          };
+          await this.$store.dispatch("login", v);
+          let inputError = await this.fetchInputError();
+          if (inputError) {
+              this.$nextTick(() => {
+                this.$message({
+                  message: "用户名或密码输入错误！！",
+                  type: "error",
+                });
+                this.$store.commit("INPUTERROR", false);
+                this.load = false;
+              });
+            } else {
+              this.$message({
+                message: "登陆成功！跳转至主页",
+                type: "success",
+              });
+              this.$router.push("/");
+            }
         } else {
           console.log("error submit!!");
           return false;
@@ -108,6 +132,10 @@ export default {
     },
     resetForm(formName) {
       this.$refs[formName].resetFields();
+    },
+    async fetchInputError() {
+      const ie = await this.$store.state.inputError;
+      return ie;
     },
   },
 };

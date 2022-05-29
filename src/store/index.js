@@ -8,7 +8,8 @@ import {
     searchBuyerGoods,
     findHistory,
     findCollect,
-    registerModule
+    registerModule,
+    loginModule,
 
 } from "../api";
 
@@ -23,6 +24,7 @@ export default new Vuex.Store({
         isEmpty: true,
         footPrintData: [],
         isRepeat: false,
+        inputError:false,
         collectionData: [],
 
         buyInData: [],
@@ -77,7 +79,11 @@ export default new Vuex.Store({
 
         ISREPEAT(state, value) {
             state.isRepeat = value;
-        }
+        },
+
+        INPUTERROR(state, value) {
+            state.inputError = value;
+        },
 
   },
     actions: {
@@ -91,6 +97,10 @@ export default new Vuex.Store({
                 }
             }).catch((err) => {
                 console.log(err);
+                if (err.message == "interrupt") {
+                    console.log('已中断请求');
+                    return;
+                }
             })
 
         },
@@ -169,6 +179,33 @@ export default new Vuex.Store({
                     context.commit('ISREPEAT', true);
                 }else {
                     throw 'Err!'
+                }
+            }).catch((err) => {
+                console.log(err);
+            })
+        },
+
+        async login(context, value) {
+            await loginModule(value).then((res) => {
+                console.log(`LOGINres`, res);
+                if (res.code === 200) {
+                    console.log("200?");
+                    console.log("200!",res);
+                    const user = {
+                        id: res.data.id,
+                        name: res.data.name
+                    }
+                    context.commit('INPUTERROR', false);
+                    window.sessionStorage.setItem("token", res.data.token);
+                    window.localStorage.setItem("user",JSON.stringify(user));
+
+
+                } else if (res.status === 403) {
+                    console.log("403?");
+                     console.log("403!",res);
+                    context.commit('INPUTERROR', true);
+                }else {
+                    throw res
                 }
             }).catch((err) => {
                 console.log(err);
