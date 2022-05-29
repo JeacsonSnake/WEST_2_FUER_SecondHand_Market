@@ -187,10 +187,7 @@ export default new Vuex.Store({
 
         async login(context, value) {
             await loginModule(value).then((res) => {
-                console.log(`LOGINres`, res);
                 if (res.code === 200) {
-                    console.log("200?");
-                    console.log("200!",res);
                     const user = {
                         id: res.data.id,
                         name: res.data.name
@@ -201,8 +198,6 @@ export default new Vuex.Store({
 
 
                 } else if (res.status === 403) {
-                    console.log("403?");
-                     console.log("403!",res);
                     context.commit('INPUTERROR', true);
                 }else {
                     throw res
