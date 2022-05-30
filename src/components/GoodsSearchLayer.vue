@@ -1,125 +1,43 @@
 <template>
   <div class="goodsSearchLayer">
-    <el-row :gutter="20">
-      <el-col :span="5" class="LayerCol">
+    <el-row :gutter="20" v-show="!isUpdate">
+      <el-col
+        :span="5"
+        class="LayerCol"
+        style="margin-top: 30px"
+        v-for="Goods in searchData"
+      >
         <div class="grid-content bg-purple">
           <el-card :body-style="{ padding: '3px' }">
-            <img
-              src="https://shadow.elemecdn.com/app/element/hamburger.9cf7b091-55e9-11e9-a976-7f4d0b07eef6.png"
+            <el-image
+              :src="'http://' + Goods.pictureUrl[0]"
               class="image"
-              style="border-radius: 5px"
+              lazy
             />
             <div style="padding: 14px">
               <div class="goodsDiscript">
-                <span>{{ goodDis }}</span>
+                <span @click="pushGoodsPage()">{{ Goods.goodDescrip }}</span>
               </div>
               <div class="goodTags">
-                <el-tag class="goodTag">标签一</el-tag>
-                <el-tag class="goodTag">标签一</el-tag>
+                <el-tag class="goodTag">{{ Goods.type }}</el-tag>
               </div>
               <div class="cardBottom clearfix">
                 <div class="user">
-                  <el-avatar :size="25" :src="circleUrl"></el-avatar>
-                  <div id="userName">我是用户mmmmm名</div>
+                  <el-avatar
+                    :size="25"
+                    :src="circleUrl"
+                    @click="pushUserPage()"
+                  ></el-avatar>
+                  <div id="userName" @click="pushUserPage()">查看卖家</div>
                 </div>
-                <div class="goodsPrise">￥22</div>
-              </div>
-            </div>
-          </el-card>
-        </div>
-      </el-col>
-
-      <el-col :span="5" class="LayerCol">
-        <div class="grid-content bg-purple">
-          <el-card :body-style="{ padding: '3px' }">
-            <img
-              src="https://shadow.elemecdn.com/app/element/hamburger.9cf7b091-55e9-11e9-a976-7f4d0b07eef6.png"
-              class="image"
-              style="border-radius: 5px"
-            />
-            <div style="padding: 14px">
-              <div class="goodsDiscript">
-                <span>{{ goodDis }}</span>
-              </div>
-              <div class="goodTags">
-                <el-tag class="goodTag">标签一</el-tag>
-                <el-tag class="goodTag">标签一</el-tag>
-              </div>
-              <div class="cardBottom clearfix">
-                <div class="user">
-                  <el-avatar :size="25" :src="circleUrl"></el-avatar>
-                  <div id="userName">我是用户mmmmm名</div>
-                </div>
-                <div class="goodsPrise">￥22</div>
-              </div>
-            </div>
-          </el-card>
-        </div>
-      </el-col>
-
-      <el-col :span="5" class="LayerCol">
-        <div class="grid-content bg-purple">
-          <el-card :body-style="{ padding: '3px' }">
-            <img
-              src="https://shadow.elemecdn.com/app/element/hamburger.9cf7b091-55e9-11e9-a976-7f4d0b07eef6.png"
-              class="image"
-              style="border-radius: 5px"
-            />
-            <div style="padding: 14px">
-              <div class="goodsDiscript">
-                <span>{{ goodDis }}</span>
-              </div>
-              <div class="goodTags">
-                <el-tag class="goodTag">标签一</el-tag>
-                <el-tag class="goodTag">标签一</el-tag>
-              </div>
-              <div class="cardBottom clearfix">
-                <div class="user">
-                  <el-avatar :size="25" :src="circleUrl"></el-avatar>
-                  <div id="userName">我是用户mmmmm名</div>
-                </div>
-                <div class="goodsPrise">￥22</div>
-              </div>
-            </div>
-          </el-card>
-        </div>
-      </el-col>
-
-      <el-col :span="5" class="LayerCol">
-        <div class="grid-content bg-purple">
-          <el-card :body-style="{ padding: '3px' }">
-            <img
-              src="https://shadow.elemecdn.com/app/element/hamburger.9cf7b091-55e9-11e9-a976-7f4d0b07eef6.png"
-              class="image"
-              style="border-radius: 5px"
-            />
-            <div style="padding: 14px">
-              <div class="goodsDiscript">
-                <span>{{ goodDis }}</span>
-              </div>
-              <div class="goodTags">
-                <el-tag class="goodTag">标签一</el-tag>
-                <el-tag class="goodTag">标签一</el-tag>
-              </div>
-              <div class="cardBottom clearfix">
-                <div class="user">
-                  <el-avatar :size="25" :src="circleUrl"></el-avatar>
-                  <div id="userName">我是用户mmmmm名</div>
-                </div>
-                <div class="goodsPrise">￥22</div>
+                <div class="goodsPrise">￥{{ Goods.price }}</div>
               </div>
             </div>
           </el-card>
         </div>
       </el-col>
     </el-row>
-
-    <el-pagination
-    :hidden="value"
-    layout="prev, pager, next"
-    :total="50">
-  </el-pagination>
-  
+    <el-empty description="无搜索结果" v-show="isEmpty"></el-empty>
   </div>
 </template>
 
@@ -127,10 +45,59 @@
 export default {
   data() {
     return {
-      goodDis: "好吃的汉堡AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
-      circleUrl: "",
-      value: false
+      circleUrl:
+        "https://cube.elemecdn.com/3/7c/3ea6beec64369c2642b92c6726f1epng.png",
+      //   value: false,
+      searchData: [],
+      isEmpty: false,
     };
+  },
+
+  methods: {
+    pushGoodsPage() {
+      this.$router.push({
+        name: "goodsDisplayPage",
+      });
+    },
+    pushUserPage() {
+      this.$router.push({
+        name: "userPage",
+      });
+    },
+  },
+
+  computed: {
+    isUpdate: function () {
+      return this.$store.state.isSearchUpdate;
+    },
+  },
+
+  async created() {
+    this.searchData = await this.$store.state.searchData;
+    this.$store.commit("SETSEARCHUPDATE", false);
+    if (this.searchData.length !== 0) {
+      this.isEmpty = false;
+      this.searchData.forEach(function (goods) {
+        goods.pictureUrl = goods.pictureUrl.trim().split(" ");
+      });
+    } else {
+      this.isEmpty = true;
+    }
+  },
+
+  mounted() {},
+
+  async beforeUpdate() {
+    this.searchData = await this.$store.state.searchData;
+    if (this.searchData.length !== 0) {
+      this.$store.commit("SETSEARCHUPDATE", false);
+      this.isEmpty = false;
+      this.searchData.forEach(function (goods) {
+        goods.pictureUrl = goods.pictureUrl.trim().split(" ");
+      });
+    } else {
+      this.isEmpty = true;
+    }
   },
 };
 </script>
@@ -152,8 +119,8 @@ export default {
 
 .el-row {
   margin-bottom: 20px;
-  &:first-child{
-      margin-top: 30px
+  &:first-child {
+    margin-top: 30px;
   }
 
   &:last-child {

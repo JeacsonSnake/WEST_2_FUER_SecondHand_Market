@@ -44,8 +44,6 @@
 export default {
   data() {
     return {
-      currentDate: new Date(),
-      goodDis: "好吃的汉堡AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
       circleUrl: "https://cube.elemecdn.com/3/7c/3ea6beec64369c2642b92c6726f1epng.png",
       sellingGoodsData: [],
     };
@@ -79,6 +77,10 @@ export default {
   },
 
   mounted() {},
+
+  updated() {
+      this.sellingGoodsData = this.$store.state.sellingGoodsData;
+  },
 };
 </script>
 

@@ -3,7 +3,7 @@ import Vuex from 'vuex'
 import {
     findSellingGood,
     searchUserByID,
-    searchSellingGood,
+    searchGood,
     searchSellerGoods,
     searchBuyerGoods,
     findHistory,
@@ -19,18 +19,20 @@ export default new Vuex.Store({
     state: {
         ifBar: true,
         isAuth: false,
+        isEmpty: true,
+        isRepeat: false,
+        inputError: false,
+        isSearchUpdate: false,
         goodsUploadDialogVisible: false,
         sellingGoodsData: [],
-        isEmpty: true,
-        footPrintData: [],
-        isRepeat: false,
-        inputError:false,
         collectionData: [],
-
-        buyInData: [],
-
+        footPrintData: [],
         soldAwayData: [],
+        searchData: [],
+        buyInData: [],
         userData: [],
+
+
 
   },
   getters: {
@@ -87,7 +89,16 @@ export default new Vuex.Store({
 
         SETAUTH(state, value) {
             state.isAuth = value;
-        }
+        },
+
+        SETSEARCHDATA(state, value) {
+            state.searchData = value;
+        },
+
+        SETSEARCHUPDATE(state, value) {
+            state.isSearchUpdate = value;
+        },
+
 
   },
     actions: {
@@ -107,6 +118,20 @@ export default new Vuex.Store({
                 }
             })
 
+        },
+
+        async getSearchData(context, value) {
+            await searchGood(value).then((res) => {
+                console.log(`res`, res);
+                if (res.code === 200) {
+                    context.commit('SETSEARCHDATA', res.data);
+                    context.commit("SETSEARCHUPDATE", true);
+                } else {
+                    throw 'Err!'
+                }
+            }).catch((err) => {
+                console.log(err);
+            })
         },
         
         async getUserByID(context, value) {

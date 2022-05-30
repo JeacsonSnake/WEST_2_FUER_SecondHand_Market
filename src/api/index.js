@@ -15,12 +15,14 @@ export const findSellingGood = (params) => {
     })
 }
 
-export const searchSellingGood = (params) => {
+export const searchGood = (value) => {
     //发请求
     return requests({
         url: 'http://4934d114v1.qicp.vip/good/searchGood',
         method: 'get',
-        params
+        params: {
+            goodDescrip: value
+        }
     })
 }
 

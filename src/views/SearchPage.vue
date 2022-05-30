@@ -1,7 +1,7 @@
 <template>
   <div class="searchPage">
     <div id="navBar"></div>
-    <GoodsSearchLayer></GoodsSearchLayer>
+    <GoodsSearchLayer v-show="isSearchUpdate"></GoodsSearchLayer>
     <FooterBlock></FooterBlock>
   </div>
 </template>
@@ -10,8 +10,14 @@
 import GoodsSearchLayer from "@/components/GoodsSearchLayer";
 import FooterBlock from "@/components/FooterBlock";
 export default {
-//   data: {},
+  computed: {
+      isSearchUpdate: async function() {
+          return await this.$store.state.isSearchUpdate;
+      }
+  },
+
   props: ["searchItem"],
+
   components: {
     GoodsSearchLayer,
     FooterBlock,

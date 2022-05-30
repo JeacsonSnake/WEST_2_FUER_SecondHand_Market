@@ -37,8 +37,9 @@
               :key="search.id"
               closable
               :type="search.type"
+              @click="searchHandler(search.name)"
               @close="closeHandler(search)"
-              style="margin-right: 5px; margin-bottom: 5px"
+              style="margin-right: 5px; margin-bottom: 5px; cursor: pointer"
               >{{ search.name }}</el-tag
             >
             <dt class="search-title">热门搜索</dt>
@@ -87,7 +88,7 @@ export default {
     enterSearchBoxHanlder() {
       clearTimeout(this.searchBoxTimeout);
     },
-    searchHandler() {
+    async searchHandler(value) {
       //随机生成搜索历史tag式样
       let n = this.getRandomNumber(0, 5);
       let exist =
@@ -101,14 +102,15 @@ export default {
         searchStore.saveHistory(this.historySearchList);
       }
       this.history = this.historySearchList.length == 0 ? false : true;
-      let self = this;
+      let searchItem = this.search? this.search : value;
+
       this.isFocus = false;
-      this.$router.push({
-        name: "searchPage",
-        query: {
-          searchItem: self.search,
-        },
-      });
+      await this.$store.dispatch("getSearchData", searchItem);
+      if (this.$route.name !== "searchPage") {
+        this.$router.push({
+          name: "searchPage",
+        });
+      }
     },
     closeHandler(search) {
       this.historySearchList.splice(this.historySearchList.indexOf(search), 1);
