@@ -13,7 +13,7 @@ const requests = axios.create({
 requests.interceptors.request.use((config) => {
     //cconfig: 配置对象
     //为请求头对象，添加token验证的Authorization字段
-  config.headers.Authorization = window.sessionStorage.getItem("token")
+  config.headers.token = window.sessionStorage.getItem("token")
     return config;
 })
 

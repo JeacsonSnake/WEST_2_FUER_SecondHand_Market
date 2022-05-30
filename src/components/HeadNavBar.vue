@@ -20,9 +20,9 @@
           <el-avatar
             :size="50"
             :src="circleUrl"
-            @click="pushUserPage(3)"
+            @click="pushUserPage({id})"
           ></el-avatar>
-          <span id="userName" @click="pushUserPage(3)">{{username}}</span>
+          <span id="userName" @click="pushUserPage({id})">{{username}}</span>
           <div class="exit">
             <el-button
               class="headNavbar-Item btnColor"
