@@ -2,28 +2,46 @@
   <div class="goodsInfo">
     <div class="carousel">
       <el-carousel indicator-position="outside">
-        <el-carousel-item v-for="item in 10" :key="item">
-          <h3>{{ item }}</h3>
+        <el-carousel-item
+          v-for="(item, index) in goodsDetail.goodPictureUrl"
+          :key="index"
+        >
+          <el-image
+              :src="'http://' + item"
+              class="goodsImage"
+              
+            />
         </el-carousel-item>
       </el-carousel>
     </div>
 
     <div id="sellerLayer">
       <span class="title">卖家：</span>
-      <div class="seller" @click="pushUserPage()">
-        <el-avatar :size="50" :src="sellerAvatarUrl"></el-avatar>
-        <span id="sellerName">{{ sellerName }}</span>
+      <div class="seller" @click="pushUserPage(goodsDetail.sellerId)">
+        <el-avatar
+          :size="50"
+          :src="goodsDetail.sellerPicUrl?goodsDetail.sellerPicUrl : circleUrl"
+        ></el-avatar>
+        <span id="sellerName">{{ goodsDetail.sellerName }}</span>
       </div>
     </div>
 
     <div class="goodsPrice">
       <span class="title">价格： </span>
-      <span id="goodsPrice">{{ goodsPrice }}</span>
+      <span id="goodsPrice">￥ {{ goodsDetail.price }}</span>
     </div>
 
     <div class="goodsBtn">
-      <el-button id="GBtn1" type="warning" icon="el-icon-star-off" circle></el-button>
-      <el-button id="GBtn2" type="primary" @click="pushOrderPage()">即刻下单！</el-button>
+      <el-button
+        id="GBtn1"
+        type="warning"
+        icon="el-icon-star-off"
+        @click="ghi()"
+        circle
+      ></el-button>
+      <el-button id="GBtn2" type="primary" @click="pushOrderPage()"
+        >即刻下单！</el-button
+      >
     </div>
   </div>
 </template>
@@ -32,20 +50,33 @@
 export default {
   data() {
     return {
-      goodsPrice: "￥54",
-      sellerAvatarUrl: "",
-      sellerName: "gkmdtghkfghkf",
+      circleUrl:
+        "https://cube.elemecdn.com/3/7c/3ea6beec64369c2642b92c6726f1epng.png",
     };
   },
 
-  methods: {
-      pushOrderPage() {
-          this.$router.push({
-              name: 'OrderPage',
-              
-          })
+  computed: {
+      goodsDetail() {
+          return this.$store.state.goodsDetailData[0];
       }
-  }
+  },
+
+  methods: {
+    pushOrderPage() {
+      this.$router.push({
+        name: "OrderPage",
+      });
+    },
+    ghi() {
+        console.log(`this.goodsDetail`, this.goodsDetail);
+    }
+  },
+
+  beforeUpdate() {
+        console.log(`this.goodsDetail`, this.goodsDetail);
+        this.goodsDetail.goodPictureUrl = this.goodsDetail.goodPictureUrl.trim().split(" ");
+        this.$bus.$emit('desp', this.goodsDetail.goodDescrip);
+  },
 };
 </script>
 
@@ -84,6 +115,10 @@ export default {
 
 .el-carousel__item:nth-child(2n + 1) {
   background-color: #d3dce6;
+}
+
+.goodsImage {
+    height: 100%;
 }
 
 .goodsPrice {
@@ -145,19 +180,20 @@ export default {
 }
 
 #GBtn1 {
-    margin-left: 20px;
+  margin-left: 20px;
 }
 
 #GBtn2 {
-    margin-left: 60px;
-    background: #ff6666;
-    border-color: #ff6666;
-    color: #FFF;
+  margin-left: 60px;
+  background: #ff6666;
+  border-color: #ff6666;
+  color: #fff;
 }
 
-#GBtn2:hover, #GBtn2:focus {
-    background: #f03737;
-    border-color: #de3434;
-    color: #FFF;
+#GBtn2:hover,
+#GBtn2:focus {
+  background: #f03737;
+  border-color: #de3434;
+  color: #fff;
 }
 </style>

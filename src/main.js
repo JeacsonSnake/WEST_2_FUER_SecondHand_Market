@@ -81,6 +81,9 @@ Vue.component('font-awesome-icon', FontAwesomeIcon)
 
 new Vue({
   router,
-  store,
+    store,
+  beforeCreate(){
+        Vue.prototype.$bus = this    //安装全局事件总线
+    },
   render: h => h(App)
 }).$mount('#app')

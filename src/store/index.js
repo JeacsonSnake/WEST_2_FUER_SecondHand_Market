@@ -10,6 +10,7 @@ import {
     findCollect,
     registerModule,
     loginModule,
+    searchGoodByID,
 
 } from "../api";
 
@@ -25,10 +26,12 @@ export default new Vuex.Store({
         isSearchUpdate: false,
         goodsUploadDialogVisible: false,
         sellingGoodsData: [],
+        goodsDetailData: [],
         collectionData: [],
         footPrintData: [],
         soldAwayData: [],
         searchData: [],
+        sellerData: [],
         buyInData: [],
         userData: [],
 
@@ -99,7 +102,13 @@ export default new Vuex.Store({
             state.isSearchUpdate = value;
         },
 
+        SETGOODSDETAILDATA(state, value) {
+            state.goodsDetailData = value;
+        },
 
+        GETSELLERDATA(state, value) {
+            state.sellerData = value;
+        }
   },
     actions: {
        async getSellingGoodsData(context, value) {
@@ -118,6 +127,20 @@ export default new Vuex.Store({
                 }
             })
 
+        },
+
+        async getGoodByID(context, value) {
+            await searchGoodByID(value).then((res) => {
+                console.log(`res`, res);
+                if (res.code === 200) {
+                    console.log(`res.data`, res.data);
+                    context.commit('SETGOODSDETAILDATA', res.data);
+                } else {
+                    throw 'Err!'
+                }
+            }).catch((err) => {
+                console.log(err);
+            })
         },
 
         async getSearchData(context, value) {
@@ -139,6 +162,20 @@ export default new Vuex.Store({
                 console.log(`res`, res);
                 if (res.code === 200) {
                     context.commit('GETUSERBYID', res.data);
+                } else {
+                    throw 'Err!'
+                }
+            }).catch((err) => {
+                console.log(err);
+            })
+
+        },
+
+        async getSellerByID(context, value) {
+           await searchUserByID(value).then((res) => {
+                console.log(`res`, res);
+                if (res.code === 200) {
+                    context.commit('GETSELLERDATA', res.data);
                 } else {
                     throw 'Err!'
                 }
@@ -218,8 +255,8 @@ export default new Vuex.Store({
             await loginModule(value).then((res) => {
                 if (res.code === 200) {
                     const user = {
-                        id: res.data.id,
-                        name: res.data.name
+                        id: res.data.userId,
+                        name: res.data.username
                     }
                     context.commit('INPUTERROR', false);
                     context.commit('SETAUTH', true);

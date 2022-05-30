@@ -16,7 +16,7 @@
             />
             <div style="padding: 14px">
               <div class="goodsDiscript">
-                <span @click="pushGoodsPage()">{{ Goods.goodDescrip }}</span>
+                <span @click="pushGoodsPage(Goods.id)">{{ Goods.goodDescrip }}</span>
               </div>
               <div class="goodTags">
                 <el-tag class="goodTag">{{ Goods.type }}</el-tag>
@@ -52,7 +52,13 @@ export default {
   computed: {},
 
   methods: {
-    pushGoodsPage() {
+    pushGoodsPage(goodsId) {
+        const user = JSON.parse(window.localStorage.getItem("user"));
+        let v = {
+            userId: user.id,
+            goodId: goodsId
+        }
+        this.$store.dispatch('getGoodByID', v)
       this.$router.push({
         name: "goodsDisplayPage",
       });

@@ -12,11 +12,15 @@
             <el-image
               :src="'http://' + Goods.pictureUrl[0]"
               class="image"
+              @click="pushGoodsPage(Goods.id)"
+              style="cursor: pointer"
               lazy
             />
             <div style="padding: 14px">
               <div class="goodsDiscript">
-                <span @click="pushGoodsPage()">{{ Goods.goodDescrip }}</span>
+                <span @click="pushGoodsPage(Goods.id)" style="cursor: pointer">
+                  {{ Goods.goodDescrip }}
+                </span>
               </div>
               <div class="goodTags">
                 <el-tag class="goodTag">{{ Goods.type }}</el-tag>
@@ -78,7 +82,7 @@ export default {
     if (this.searchData.length !== 0) {
       this.isEmpty = false;
       this.searchData.forEach(function (goods) {
-        goods.pictureUrl = goods.pictureUrl.trim().split(" ");
+        goods.pictureUrl = goods.pictureUrl.split(" ");
       });
     } else {
       this.isEmpty = true;
@@ -93,7 +97,7 @@ export default {
       this.$store.commit("SETSEARCHUPDATE", false);
       this.isEmpty = false;
       this.searchData.forEach(function (goods) {
-        goods.pictureUrl = goods.pictureUrl.trim().split(" ");
+        goods.pictureUrl = goods.pictureUrl.split(" ");
       });
     } else {
       this.isEmpty = true;

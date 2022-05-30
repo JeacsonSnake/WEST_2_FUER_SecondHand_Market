@@ -32,7 +32,7 @@ export const searchUserByID = (value) => {
         url: 'http://4934d114v1.qicp.vip/checked/searchUserByID',
         method: 'get',
         params: {
-            userID: value,
+            userId: value,
         }
     })
 }
@@ -55,6 +55,17 @@ export const searchBuyerGoods = (value) => {
         method: 'get',
         params: {
             buyerId: value,
+        }
+    })
+}
+
+export const searchGoodByID = (value) => {
+    return requests({
+        url: 'http://4934d114v1.qicp.vip/good/clickGood',
+        method: 'get',
+        params: {
+            userId: value.userId,
+            goodId: value.goodId,
         }
     })
 }

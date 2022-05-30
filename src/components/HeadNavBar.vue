@@ -100,7 +100,7 @@ export default {
     },
 
     async pushUserPage(userId) {
-      await this.$store.dispatch("getUserByID", userId);
+      await this.$store.dispatch("getUserByID", userId.id);
       this.$router.push({
         name: "userPage",
       });
