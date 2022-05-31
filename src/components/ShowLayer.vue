@@ -6,8 +6,8 @@
     </div>
     <div class="carousel">
       <el-carousel indicator-position="outside">
-        <el-carousel-item v-for="item in 4" :key="item">
-          <h3>{{ item }}</h3>
+        <el-carousel-item v-for="item in images" :key="item">
+          <img :src="item.url" alt="无图片" style="width: 100%"/>
         </el-carousel-item>
       </el-carousel>
     </div>
@@ -15,7 +15,16 @@
 </template>
 
 <script>
-export default {};
+export default {
+  data() {
+    return {
+        images: [
+          { url: require("@/assets/curselIMG1.jpg")},
+          { url: require("@/assets/curselIMG2.jpg")},
+        ],
+    };
+  },
+};
 </script>
 
 <style lang="scss" scoped>
