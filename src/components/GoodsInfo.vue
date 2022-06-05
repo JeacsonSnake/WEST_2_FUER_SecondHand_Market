@@ -64,7 +64,7 @@ export default {
   methods: {
     pushOrderPage() {
       this.$router.push({
-        name: "OrderPage",
+        name: "orderPage",
       });
     },
     ghi() {
