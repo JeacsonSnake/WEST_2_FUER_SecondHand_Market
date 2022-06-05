@@ -92,6 +92,9 @@
               </div>
             </el-tooltip>
           </el-form-item>
+          <el-form-item label="价格" :label-width="formLabelWidth">
+            <el-input v-model="input" placeholder="请输入内容"></el-input>
+          </el-form-item>
         </el-col>
       </el-row>
 
