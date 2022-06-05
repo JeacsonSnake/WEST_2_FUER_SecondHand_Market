@@ -5,7 +5,7 @@
         :span="5"
         class="LayerCol"
         style="margin-top: 30px"
-        v-for="Goods in sellingGoodsData.slice(0,8)"
+        v-for="Goods in sellingGoodsData.slice(0, 8)"
       >
         <div class="grid-content bg-purple">
           <el-card :body-style="{ padding: '3px' }">
@@ -16,7 +16,9 @@
             />
             <div style="padding: 14px">
               <div class="goodsDiscript">
-                <span @click="pushGoodsPage(Goods.id)">{{ Goods.goodDescrip }}</span>
+                <span @click="pushGoodsPage(Goods.id)">{{
+                  Goods.goodDescrip
+                }}</span>
               </div>
               <div class="goodTags">
                 <el-tag class="goodTag">{{ Goods.type }}</el-tag>
@@ -30,7 +32,7 @@
                   ></el-avatar>
                   <div id="userName" @click="pushUserPage()">查看卖家</div>
                 </div>
-                <div class="goodsPrise">￥{{Goods.price}}</div>
+                <div class="goodsPrise">￥{{ Goods.price }}</div>
               </div>
             </div>
           </el-card>
@@ -44,7 +46,8 @@
 export default {
   data() {
     return {
-      circleUrl: "https://cube.elemecdn.com/3/7c/3ea6beec64369c2642b92c6726f1epng.png",
+      circleUrl:
+        "https://cube.elemecdn.com/3/7c/3ea6beec64369c2642b92c6726f1epng.png",
       sellingGoodsData: [],
     };
   },
@@ -53,39 +56,47 @@ export default {
 
   methods: {
     pushGoodsPage(goodsId) {
-        const user = JSON.parse(window.localStorage.getItem("user"));
-        let v = {
-            userId: user.id,
-            goodId: goodsId
-        }
-        this.$store.dispatch('getGoodByID', v)
-      this.$router.push({
-        name: "goodsDisplayPage",
-      });
+      console.log(`goodsId`, goodsId);
+      const user = JSON.parse(window.localStorage.getItem("user"));
+      let v = {
+        userId: user.id,
+        goodId: goodsId,
+      };
+      if (user === null) {
+        this.$message({
+          message: "还没登陆啊啊啊啊啊啊啊啊！！",
+          type: "error",
+        });
+        this.$router.push({
+          name: "login",
+        });
+      } else {
+        this.$store.dispatch("getGoodByID", v);
+        this.$router.push({
+          name: "goodsDisplayPage",
+        });
+      }
     },
     pushUserPage() {
       this.$router.push({
         name: "userPage",
       });
     },
-
   },
 
   async created() {
     await this.$store.dispatch("getSellingGoodsData");
     this.sellingGoodsData = this.$store.state.sellingGoodsData;
-    this.sellingGoodsData.forEach (
-        function(goods) {
-            goods.pictureUrl = goods.pictureUrl.trim().split(" ");
-        }
-    )
-    console.log(this.sellingGoodsData);
+    this.sellingGoodsData.forEach(function (goods) {
+      goods.pictureUrl = goods.pictureUrl.trim().split(" ");
+    });
+    console.log("ggggg", this.sellingGoodsData);
   },
 
   mounted() {},
 
   updated() {
-      this.sellingGoodsData = this.$store.state.sellingGoodsData;
+    this.sellingGoodsData = this.$store.state.sellingGoodsData;
   },
 };
 </script>
